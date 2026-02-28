@@ -1,7 +1,7 @@
 name: Test Padel CLI
 
 on:
-  workflow_dispatch:   # du kannst den Workflow manuell starten
+  workflow_dispatch:
 
 jobs:
   run-padel:
@@ -15,8 +15,8 @@ jobs:
         with:
           go-version: "1.22"
 
-      - name: Install padel-cli
-        run: go install github.com/joshp123/padel-cli@latest
+      - name: Build padel-cli
+        run: go build -o padel ./cmd/padel
 
       - name: Run a simple search
-        run: padel search --location "Dortmund" --json
+        run: ./padel search --location "Dortmund" --json
