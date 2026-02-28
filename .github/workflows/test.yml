@@ -8,15 +8,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout your repo
+        uses: actions/checkout@v4
 
       - name: Install Go
         uses: actions/setup-go@v5
         with:
           go-version: "1.22"
 
+      - name: Clone padel-cli
+        run: git clone https://github.com/joshp123/padel-cli.git
+
       - name: Build padel-cli
-        run: go build -o padel ./cmd/padel
+        run: |
+          cd padel-cli
+          go build -o padel ./cmd/padel
 
       - name: Run a simple search
-        run: ./padel search --location "Dortmund" --json
+        run: |
+          cd padel-cli
+          ./padel search --location "Dortmund" --json
