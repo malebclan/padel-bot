@@ -22,7 +22,7 @@ jobs:
       - name: Build padel-cli
         run: |
           cd padel-cli
-          go build -o padel ./cmd/padel
+          go build -o padel ./cmd/padel-cli
 
       - name: Run a simple search
         run: |
