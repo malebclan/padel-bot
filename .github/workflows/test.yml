@@ -1,0 +1,22 @@
+name: Test Padel CLI
+
+on:
+  workflow_dispatch:   # du kannst den Workflow manuell starten
+
+jobs:
+  run-padel:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - name: Install padel-cli
+        run: go install github.com/joshp123/padel-cli@latest
+
+      - name: Run a simple search
+        run: padel search --location "Dortmund" --json
